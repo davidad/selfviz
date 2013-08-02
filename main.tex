@@ -1,0 +1,72 @@
+\input{preamble}
+\input{header}
+\newcommand{\lplo}[4]{
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=\textwidth,
+  height=#4,
+  axis x line*=bottom,
+  axis y line*=left,
+  every outer y axis line/.append style={color=black!25!white},
+  yticklabel style={color=black!30!white},
+  date coordinates in=x,
+  xmajorgrids=true,
+  xminorgrids=true,
+  minor x tick num=2,
+  minor y tick num=1,
+  date ZERO=#1,
+  extra x ticks={#1,#2,#3},
+  extra x tick label={\footnotesize\month/\day},
+  extra x tick style={major tick length=2.5mm,tick style={line width=0.2mm,color=black},tick label style={rotate=0,anchor=north}, ticklabel shift={2mm}},
+  xticklabel={\scriptsize\itshape\hour},
+  xticklabel style={rotate=0},
+  xticklabel shift={-1mm},
+  xmin=#1,
+  xmax=#3,
+  clip limits=false,
+  ymin=-0.7,
+  ymax=10,
+  tension=0.3,
+  extra description/.code={
+  \node at (axis description cs:-0.031,-0.0154) {\footnotesize UTC};
+  \node at (axis description cs:0.047,\weeksh) {\weekst Su};
+  \node at (axis description cs:0.190,\weeksh) {\weekst M};
+  \node at (axis description cs:0.333,\weeksh) {\weekst Tu};
+  \node at (axis description cs:0.476,\weeksh) {\weekst W};
+  \node at (axis description cs:0.619,\weeksh) {\weekst Th};
+  \node at (axis description cs:0.762,\weeksh) {\weekst F};
+  \node at (axis description cs:0.905,\weeksh) {\weekst Sa};
+  }]
+  \addplot[mark=*,color=darkgray,jump mark right] table[col sep=comma,x=date,y=wakeful] {sleep_log.txt};
+  %\node at (axis cs:2012-05-21 02:00,1.0) {\color{darkgray} \scriptsize Sleep};
+  %\node at (axis cs:2012-05-21 02:00,0.05) {\color{darkgray} \scriptsize (Wake)};
+  \addplot[mark=*,color=green,smooth] table[col sep=comma,x=date,y=distractability] {mood_log.txt};
+  \addplot[mark=*,color=red,smooth] table[col sep=comma,x=date,y=anxiety] {mood_log.txt};
+  \addplot[mark=*,color=blue,smooth] table[col sep=comma,x=date,y=depression] {mood_log.txt};
+  \addplot[mark=square*,color=yellow!80!darkgray,very thick,smooth] table[col sep=comma,x=date,y=happiness] {mood_log.txt};
+  \begin{scope}[yshift=-4.57cm]
+\input{misc_events}
+  \end{scope}
+  \begin{scope}[purple,yshift=3pt]
+  %\node at (axis cs:2012-05-28 09:00,0.55) {\color{purple}\scriptsize Meals$\,\lhook\joinrel\relbar\joinrel\rightarrow$};
+\input{meals}
+  \end{scope}
+  \begin{scope}[orange,yshift=-4pt]
+  %\node at (axis cs:2012-06-11 20:25,0.55) {\color{orange}\scriptsize Work$\,\lhook\joinrel\relbar\joinrel\rightarrow$};
+\input{work}
+  \end{scope}
+  \begin{scope}[cyan,yshift=0pt]
+  %\node at (axis cs:2012-06-14 10:40,0.55) {\color{cyan}\scriptsize Practice$\,\lhook\joinrel\relbar\joinrel\rightarrow$};
+\input{practice}
+  \end{scope}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{-3mm}
+}
+
+\newcommand{\fpheight}{8.5cm}
+
+\input{dates}
+\end{document}
