@@ -1,6 +1,8 @@
 selfviz
 =======
 
+[![screen shot 2013-08-04 at 8 36 56 pm](https://f.cloud.github.com/assets/87753/908139/51757926-fd80-11e2-936b-7b7879437c6c.png)](https://github.com/davidad/selfviz/releases/edit/v0.1)
+
 A LaTeX/TikZ rendering template for plotting some "quantified self" data against a UTC x-axis.
 You may need an up-to-date installation of [TeXLive](http://www.tug.org/texlive/) ([OSX](http://www.tug.org/mactex/), [Unix](http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz), [Windows](http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip))
 to make this work.
